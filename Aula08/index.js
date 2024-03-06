@@ -1,10 +1,10 @@
-(async () =>{
+(async ()=>{
     const db = require('./db')
-    console.log('Inserindo novo cliente')
-    await db.insereCliente({s_nome: 'João', i_idade: 14})
 
-    console.log('Obter todos os clientes')
+    console.log('Inserindo cliente')
+    await db.insereCliente({s_nome: 'Luiza', i_idade:16})
+
+    console.log('Obter os clientes')
     const clientes = await db.todosClientes()
     console.log(clientes)
 })()
-
