@@ -2,7 +2,7 @@
     const db = require('./db')
 
     console.log('Inserindo cliente')
-    await db.insereCliente({s_nome: 'Luiza', i_idade:16})
+    await db.insereCliente({s_nome: 'Simone', i_idade:42})
 
     console.log('Obter os clientes')
     const clientes = await db.todosClientes()
