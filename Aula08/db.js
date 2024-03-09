@@ -7,13 +7,14 @@ const conectar = async()=>{
     global.conexao = con
     return con
 }
-// const criaTabela = async()=>{
-//     const con = await conectar()
-//     await con.query(`CREATE TABLE IF NOT EXISTS clienteS_node (
-//         s_nome VARCHAR(30),
-//         i_idade INT(2))`)
+const criaTabela = async()=>{
+    const con = await conectar()
+    await con.query(`CREATE TABLE IF NOT EXISTS clienteS_node (
+        i_id INT PRIMARY KEY AUTO_INCREMENT,
+        s_nome VARCHAR(30),
+        i_idade INT(2))`)
     
-// }
+}
 
 const todosClientes = async()=>{
     const con = await conectar()
@@ -28,4 +29,18 @@ const insereCliente = async(cliente)=>{
     await con.query(sql, valores)
 }
 
-module.exports = {/*criaTabela,*/ todosClientes, insereCliente}
+const atualizaCliente = async(id, cliente)=>{
+    const con = await conectar()    
+    const sql = 'UPDATE clientes_node SET s_nome=?, i_idade=? WHERE i_id=?'
+    const valores = [cliente.s_nome, cliente.i_idade, id]
+    await con.query(sql, valores)
+}
+
+const deletarCliente = async(id)=>{
+    const con = await conectar()    
+    const sql = 'DELETE FROM clientes_node WHERE i_id=?'
+    const valores = [id]
+    await con.query(sql, valores)
+}
+
+module.exports = {criaTabela, todosClientes, insereCliente, atualizaCliente, deletarCliente}
