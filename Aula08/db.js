@@ -2,11 +2,18 @@ const conectar = async()=>{
     if(global.conexao && global.conexao.state != 'disconected')
         return global.conexao
     const mysql= require('mysql2/promise')
-    const con = mysql.createConnection('mysql://root:Guitarra13121990@localhost:3306/cfbcursos')
+    const con = mysql.createConnection('mysql://root:Guitarra13121990@localhost:3306/cursonode')
     console.log('Conectado ao banco')
     global.conexao = con
     return con
 }
+// const criaTabela = async()=>{
+//     const con = await conectar()
+//     await con.query(`CREATE TABLE IF NOT EXISTS clienteS_node (
+//         s_nome VARCHAR(30),
+//         i_idade INT(2))`)
+    
+// }
 
 const todosClientes = async()=>{
     const con = await conectar()
@@ -21,4 +28,4 @@ const insereCliente = async(cliente)=>{
     await con.query(sql, valores)
 }
 
-module.exports = {todosClientes, insereCliente}
+module.exports = {/*criaTabela,*/ todosClientes, insereCliente}
