@@ -10,7 +10,13 @@ async function run(){
 
         const dbo = client.db('cfbcursos')
         const res = await dbo.collection(colecao).find({}).toArray()
-        console.log(res.curso)
+        
+        console.log(res.map(item=>{
+            return{
+                curso: item.curso,
+                canal: item.canal
+            }
+        }))
     }finally{
         await client.close()
     }
